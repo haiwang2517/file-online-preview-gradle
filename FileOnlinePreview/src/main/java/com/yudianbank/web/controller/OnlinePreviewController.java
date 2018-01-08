@@ -22,21 +22,25 @@ import java.util.Arrays;
 public class OnlinePreviewController {
     @Autowired
     private OfficeToPdf officeToPdf;
+    
     @Autowired
     FileUtils fileUtils;
+    
     @Autowired
     DownloadUtils downloadUtils;
+    
     @Autowired
     ZipReader zipReader;
+    
     @Autowired
     SimTextUtil simTextUtil;
+    
+    
     @Value("${simText}")
-    String[] simText;
-//    @ApolloConfig
-//    Config config;
+    String[] simText; // ## 支持的类文本格式的文件类型
 
     @Value("${file.dir}")
-    String fileDir;
+    String fileDir;   // 本地文件存放地址
 
     /**
      * xls:http://keking.ufile.ucloud.com.cn/20171113164107_月度绩效表模板(新).xls?UCloudPublicKey=ucloudtangshd@weifenf.com14355492830001993909323&Expires=&Signature=I+D1NOFtAJSPT16E6imv6JWuq0k=
@@ -139,6 +143,13 @@ public class OnlinePreviewController {
         }
     }
 
+    /**
+     * 获取文件后缀
+     * @param url
+     * @return
+     * @author HYL   
+     * @date 2018年1月8日 下午2:32:19
+     */
     private String suffixFromUrl(String url) {
         String nonPramStr = url.substring(0, url.indexOf("?") != -1 ? url.indexOf("?"): url.length());
         String fileName = nonPramStr.substring(nonPramStr.lastIndexOf("/") + 1);

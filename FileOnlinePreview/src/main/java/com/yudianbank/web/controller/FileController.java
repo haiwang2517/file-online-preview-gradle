@@ -1,11 +1,16 @@
 package com.yudianbank.web.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
-import com.yudianbank.param.ReturnResponse;
-import com.yudianbank.utils.FileUtils;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
+import com.yudianbank.param.ReturnResponse;
+import com.yudianbank.utils.FileUtils;
 
 /**
  *
@@ -86,12 +91,12 @@ public class FileController {
         return new ObjectMapper().writeValueAsString(list);
     }
 
-    private String getFileName(String name) {
-        String suffix = name.substring(name.lastIndexOf("."));
-        String nameNoSuffix = name.substring(0, name.lastIndexOf("."));
-        String uuid = UUID.randomUUID().toString();
-        return uuid + "-" + nameNoSuffix + suffix;
-    }
+//    private String getFileName(String name) {
+//        String suffix = name.substring(name.lastIndexOf("."));
+//        String nameNoSuffix = name.substring(0, name.lastIndexOf("."));
+//        String uuid = UUID.randomUUID().toString();
+//        return uuid + "-" + nameNoSuffix + suffix;
+//    }
 
     /**
      * 是否存在该类型的文件
